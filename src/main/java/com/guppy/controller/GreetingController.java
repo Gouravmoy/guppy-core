@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,14 +34,19 @@ public class GreetingController {
 //		this.httpClient = myHttpClient;
 //	}
 
+	private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
+
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 
 		Map<Object, Object> qp = new HashMap<>();
-		qp.put("limit",10);
-		Request request = Request.builder().URL("https://catfact.ninja/breeds").queryParam(qp).requestType(HTTPRequestType.GET).build();
-		httpClient.getData(request,Object.class).subscribe(response -> {
-			System.out.println("Response - " + response);
+		qp.put("limit", 10);
+		Request request = Request.builder().URL("https://catfact.ninja/breeds").queryParam(qp)
+				.requestType(HTTPRequestType.GET).build();
+		Request request2 = Request.builder().URL("https://reqres.in/api/users").requestType(HTTPRequestType.POST)
+				.requestBody("{\"name\": \"morpheus\",\"job\": \"leader\"}").build();
+		httpClient.makeEndpointCall(request2, Object.class).subscribe(response -> {
+			logger.info("Response - " + response);
 		});
 
 		return new Greeting(counter.incrementAndGet(), "HAHA");
