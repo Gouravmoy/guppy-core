@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "Endpoint")
+@Table(name = "endpoint")
 @Data
 public class Endpoint {
 
@@ -32,7 +32,7 @@ public class Endpoint {
 	@JoinColumn(name = "payload_id", referencedColumnName = "id")
 	Payload payload;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "authentication_info_id", referencedColumnName = "id")
 	AuthenticationInfo authenticationInfo;
 

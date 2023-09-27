@@ -15,7 +15,6 @@ public class EndpointController {
 
     @PostMapping("/endpoints")
     public ResponseEntity<String> createEndpoint(@RequestBody EndpointDTO endpointDTO) {
-        // Call the service to create the endpoint
         String endpointId = endpointService.createEndpoint(endpointDTO);
         return ResponseEntity.ok("Endpoint created with ID: " + endpointId);
     }

@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "RetryPolicy")
+@Table(name = "retry_policy")
 @Data
 public class RetryPolicy {
 

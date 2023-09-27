@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
-@Table(name = "Payload")
+@Table(name = "payload")
 @Data
 @AllArgsConstructor
 public class Payload {

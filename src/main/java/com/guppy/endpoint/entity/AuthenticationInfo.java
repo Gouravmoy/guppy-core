@@ -5,11 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "AuthenticationInfo")
+@Table(name = "authentication_info")
 @Data
 public class AuthenticationInfo {
 
@@ -19,6 +20,10 @@ public class AuthenticationInfo {
 
 	@Column(name = "authentication_info", nullable = false, columnDefinition = "TEXT")
 	String authentication_info;
+	
+//	@OneToOne(mappedBy = "authenticationInfo")
+//	private Endpoint endpoint;
+	
 	
 	public AuthenticationInfo(String authenticationInfo) {
 		this.authentication_info = authenticationInfo;

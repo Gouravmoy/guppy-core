@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "Metadata")
+@Table(name = "metadata")
 @Data
 public class Metadata {
 
