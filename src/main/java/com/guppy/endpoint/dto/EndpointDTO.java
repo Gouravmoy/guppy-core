@@ -2,12 +2,13 @@ package com.guppy.endpoint.dto;
 
 import java.util.List;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class EndpointDTO {
+	private Long id;
 	private String url;
 	private String httpMethod;
 	private List<HeaderDTO> headers;
