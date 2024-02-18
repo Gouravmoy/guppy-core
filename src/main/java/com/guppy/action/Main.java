@@ -70,7 +70,6 @@ public class Main {
 		List<WFAction> actions = null;
 		try {
 			actions = getActionsFromWF(workflow);
-
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -78,10 +77,9 @@ public class Main {
 		/**
 		 * Then we execute the actions
 		 */
-
-		for (WFAction action : actions) {
-			actionManager.executeAction(action.getAction_name());
-		}
+		
+		actionManager.executeActions(actions);
+		
 		System.out.println("--> Completed");
 
 //		TextFileGenerator fileGenerator = new TextFileGenerator("fileLoc", "fileName");

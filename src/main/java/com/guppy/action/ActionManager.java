@@ -1,10 +1,7 @@
 package com.guppy.action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class ActionManager {
 
@@ -28,20 +25,45 @@ public class ActionManager {
 		System.out.println("Action not found: " + actionName);
 	}
 
+//	public void executeActions(List<WFAction> wfActions) {
+//		Map<WFAction, String> actionOutputMap = new HashMap<>();
+//		for (WFAction wfAction : wfActions) {
+//			for (Action action : actions) {
+//				if (action.getName().equals(wfAction.getAction_name())) {
+//					action.execute();
+//					actionOutputMap.put(wfAction, action.getOutput());
+//				}
+//			}
+//		}
+//		for (Entry<WFAction, String> entry : actionOutputMap.entrySet()) {
+//			System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//		}
+//	}
+
 	public void executeActions(List<WFAction> wfActions) {
-		Map<WFAction, String> actionOutputMap = new HashMap<>();
+		List<Action> actionsToExecute = getActionList(wfActions);
+		for (int i = 0; i < actionsToExecute.size(); i++) {
+			Action action = actionsToExecute.get(i);
+			Action nextAction = null;
+			if ((i + 1) < actionsToExecute.size())
+				nextAction = actionsToExecute.get(i + 1);
+			action.execute();
+			if (null != nextAction)
+				nextAction.setInput(action.getOutput());
+			System.out.println(action);
+		}
+	}
+
+	private List<Action> getActionList(List<WFAction> wfActions) {
+		List<Action> actions = new ArrayList<Action>();
 		for (WFAction wfAction : wfActions) {
-			for (Action action : actions) {
+			for (Action action : this.actions) {
 				if (action.getName().equals(wfAction.getAction_name())) {
-					action.execute();
-					actionOutputMap.put(wfAction, action.getOutput());
+					actions.add(action);
 				}
 			}
-			System.out.println("Action not found: " + wfAction.getAction_name());
 		}
-		for (Entry<WFAction, String> entry : actionOutputMap.entrySet()) {
-			System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-		}
+		return actions;
 	}
 
 }

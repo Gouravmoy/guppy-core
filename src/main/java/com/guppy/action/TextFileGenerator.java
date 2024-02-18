@@ -1,8 +1,10 @@
 package com.guppy.action;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class TextFileGenerator implements Action {
 
 	String fileLocation;
@@ -30,6 +32,12 @@ public class TextFileGenerator implements Action {
 	@Override
 	public String getOutput() {
 		return fileLocation + "//" + fileName;
+	}
+
+	@Override
+	public void setInput(String input) {
+		this.content = input;
+		
 	}
 
 }

@@ -1,8 +1,10 @@
 package com.guppy.action;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class ChatGTPGetInfo implements Action {
 
 	private String endpointUrl;
@@ -35,5 +37,11 @@ public class ChatGTPGetInfo implements Action {
 	@Override
 	public String getOutput() {
 		return response;
+	}
+
+
+	@Override
+	public void setInput(String input) {
+		this.topicName = input;
 	}
 }
