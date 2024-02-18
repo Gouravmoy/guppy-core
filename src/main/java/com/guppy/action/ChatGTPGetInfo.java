@@ -7,7 +7,7 @@ public class ChatGTPGetInfo implements Action {
 
 	private String endpointUrl;
 	private String topicName;
-	private String content;
+	private String response;
 	public ChatGTPGetInfo(String endPointUrl,String topicName){
 		this.endpointUrl = endPointUrl;
 		this.topicName = topicName;
@@ -16,12 +16,24 @@ public class ChatGTPGetInfo implements Action {
 
 	@Override
 	public void execute() {
-		content = "Information fetched from ChatGTP about topic "+topicName;
-		System.out.println(content);
+		System.out.println("------- Executing - " + getName());
+
+		System.out.println("endpointUrl - " + endpointUrl);
+		System.out.println("Topic name - " + topicName);
+
+		response = GTPAnswer.answerToTopicQuery();
+
+		System.out.println("Output from GTP Topic Search - " + response);
 	}
 
 	@Override
 	public String getName() {
-		return "chat_gtp_get_info";
+		return "endpt-call-chatgtp-topic";
+	}
+
+
+	@Override
+	public String getOutput() {
+		return response;
 	}
 }

@@ -3,7 +3,7 @@ package com.guppy.action;
 import lombok.Data;
 
 @Data
-public class TextFileGenerator implements Action {
+public class PresentationGenerator implements Action {
 
 	String fileLocation;
 	String fileName;
@@ -18,10 +18,10 @@ public class TextFileGenerator implements Action {
 
 	@Override
 	public String getName() {
-		return "create-text-file";
+		return "text-file-generator";
 	}
 
-	public TextFileGenerator(String fileLocation, String fileName) {
+	public PresentationGenerator(String fileLocation, String fileName) {
 		super();
 		this.fileLocation = fileLocation;
 		this.fileName = fileName;
@@ -29,7 +29,6 @@ public class TextFileGenerator implements Action {
 
 	@Override
 	public String getOutput() {
-		return fileLocation + "//" + fileName;
+		return fileLocation + "//"+fileName;
 	}
-
 }
