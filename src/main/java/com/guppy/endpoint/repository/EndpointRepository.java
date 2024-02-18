@@ -1,4 +1,4 @@
-package com.guppy.endpoint;
+package com.guppy.endpoint.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
