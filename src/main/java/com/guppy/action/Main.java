@@ -8,12 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 
 		ActionManager actionManager = new ActionManager();
